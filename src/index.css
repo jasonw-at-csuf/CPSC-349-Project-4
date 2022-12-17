@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .form-container{
+        @apply bg-amber-100 outline outline-amber-900 outline-8 w-5/6 sm:w-2/5 p-5;
+    }
+    .form{
+        @apply flex flex-col justify-center items-center;
+    }
+    .form-h2{
+        @apply outline outline-amber-900 rounded font-bold text-3xl mb-10 p-1;
+    }
+    .form-label{
+        @apply font-bold text-lg mb-2;
+    }
+    .btn{
+        @apply bg-white hover:bg-amber-900 text-amber-900 font-semibold hover:text-white mt-4 py-1 px-4 border border-amber-900 hover:border-transparent rounded;    
+    }
+    .form-input{
+        @apply rounded p-2 outline outline-amber-900 outline-2;
+    }
+}

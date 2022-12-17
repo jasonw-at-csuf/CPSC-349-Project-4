@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "pocketbase": "./pocketbase serve",
+    "pocketbase": "pocketbase serve",
+    "tailwindcss": "tailwindcss -i ./src/index.css -o ./src/output.css --watch",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start" : "npm-run-all --parallel dev pocketbase tailwindcss"
   },
   "dependencies": {
     "@netlify/classnames-template-literals": "^1.0.3",

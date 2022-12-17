@@ -23,18 +23,20 @@ export const Login = (props) => {
 
     return(
     <>
-        <form onSubmit={handleSubmit}>
-          <h2>Log In</h2>
-          {/* Email */}
-          <label htmlFor="email">Email </label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email Address" id="email" name="email"/>
-          {/* Password */}
-          <label htmlFor="password">Password</label>
-          <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Password" id="password" name="password"/>
-          {/* Submission */}
-          <input type="submit" id="submitBtn" value="Submit"/>
+    <div className="form-container">
+        <form onSubmit={handleSubmit} class="form">
+            <h2 class="form-h2">Log In</h2>
+            {/* Email */}
+            <label htmlFor="email" class="form-label">Email </label>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email Address" id="email" name="email" class="form-input"/>
+            {/* Password */}
+            <label htmlFor="password" class="form-label">Password</label>
+            <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Password" id="password" name="password" class="form-input"/>
+            {/* Submission */}
+            <input type="submit" id="submitBtn" value="Submit" class="btn"/>
         </form>
-        <button onClick={() => props.onFormSwitch('SignUp')} type="button">Don't have an account? Register</button>
+        <button onClick={() => props.onFormSwitch('SignUp')} type="button" class="btn">Don't have an account? Register</button>
+    </div>
     </>
     )
   
