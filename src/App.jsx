@@ -7,22 +7,16 @@
 // }
 
 // export default App
+import PocketBase from "pocketbase"
 
 const USERNAME = 'email@email.com'
 const PASSWORD = 'poggers123'
 
 const pb = new PocketBase('https://cpsc349project4.fly.dev')
-const root = ReactDOM.createRoot(document.getElementById('root'))
 
 let isLoggedIn = false
 
-root.render(
-  <React.StrictMode>
-    <Login />
-  </React.StrictMode>
-)
-
-function App () {
+export default function App () {
   return (
     <div className='App'>
       <h1>Welcome to Tic Tac Toe</h1>
