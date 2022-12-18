@@ -22,15 +22,15 @@ export const Lobby = () => {
     try {
       //if this works go to gameboard
       const game = await pb.collection("games").getOne(roomId);
-      console.log("Join into room");
-      await pb.collection("games").update(game.id, {
-        player_2: [pb.authStore.model.id],
-      });
+      console.debug(`Joining room ${game.id}`);
+      if (game.player_2.length == 0)
+        await pb.collection("games").update(game.id, {
+          player_2: [pb.authStore.model.id],
+        });
+      else throw Error("Room is full");
       window.location.href = `game.html?gameId=${game.id}`;
     } catch (error) {
-      alert("Sorry, no room exists");
-      console.log("Caught the Error");
-      throw Error(error);
+      alert(`An error occured while joining room: ${error}`);
     }
   };
 

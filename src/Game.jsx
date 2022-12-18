@@ -10,10 +10,6 @@ import { checkWin, create2d, index1d, isFilled } from "./util";
 const pb = new PocketBase("https://cpsc349project4.fly.dev");
 pb.autoCancellation(false);
 const gameId = new URLSearchParams(window.location.search).get("gameId");
-// console.log(pb.authStore.isValid);
-// console.log(pb.authStore.token);
-// console.log(pb.authStore.model.id);
-// console.log(pb.authStore.model);
 
 export function Game() {
   const [board, setBoard] = useState(create2d(3));
@@ -65,7 +61,6 @@ export function Game() {
   // subscribe to realtime updates from the database
   useEffect(() => {
     getGameState().then((state) => {
-      console.log(state);
       setBoard(JSON.parse(state.board_state));
       setTurn(state.turn);
 
