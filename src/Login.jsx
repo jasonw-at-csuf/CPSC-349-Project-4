@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PocketBase from "pocketbase"
+import PocketBase from "pocketbase";
 
 export const Login = (props) => {
     const pb = new PocketBase('https://cpsc349project4.fly.dev')
@@ -15,6 +15,7 @@ export const Login = (props) => {
     
         if(authData != 400){
             console.log("isLoggedIn");
+            props.checkLogin('true');
         }else{
             alert("ERROR");
         };
