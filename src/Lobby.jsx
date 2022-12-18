@@ -12,7 +12,7 @@ export const Lobby = () => {
       board_state: JSON.stringify(create2d(3)),
       player_1: [pb.authStore.model.id],
     });
-    window.location.href = `game.html?${game.id}`;
+    window.location.href = `game.html?gameId=${game.id}`;
     //go to gameboard after creating room
   };
 
@@ -26,7 +26,7 @@ export const Lobby = () => {
       await pb.collection("games").update(game.id, {
         player_2: [pb.authStore.model.id],
       });
-      window.location.href = `game.html?${game.id}`;
+      window.location.href = `game.html?gameId=${game.id}`;
     } catch (error) {
       alert("Sorry, no room exists");
       console.log("Caught the Error");
