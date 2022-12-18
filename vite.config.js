@@ -7,4 +7,5 @@ export default defineConfig({
     port: 8090,
   },
   plugins: [react()],
+  base: "",
 });
