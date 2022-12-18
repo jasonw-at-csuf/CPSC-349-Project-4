@@ -11,13 +11,17 @@ export const SignUp = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(pass.length < 8 || confirmPass.length < 8){
-            alert("password needs to be over 8 characters");
+            alert("Password needs to be over 8 characters")
+        }
+        else if (pass != confirmPass) {
+            alert("Confirm password must match password")
         }else{
             await pb.collection('users').create({
                 email:            email,
                 password:         pass,
                 passwordConfirm:  confirmPass,
             });
+            console.log("Account Created")
         }
     };
 
