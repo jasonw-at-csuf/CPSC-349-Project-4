@@ -8,6 +8,7 @@ import "./index.css";
 import { checkWin, create2d, index1d, isFilled } from "./util";
 
 const pb = new PocketBase("https://cpsc349project4.fly.dev");
+pb.autoCancellation(false);
 const gameId = new URLSearchParams(window.location.search).get("gameId");
 // console.log(pb.authStore.isValid);
 // console.log(pb.authStore.token);
@@ -58,14 +59,23 @@ export function Game() {
   };
 
   const getGameState = async () => {
-    return await pb.collection("games").getOne(gameId, {
-      turn: turn,
-      board_state: JSON.stringify(board),
-    });
+    return await pb.collection("games").getOne(gameId);
   };
 
   // subscribe to realtime updates from the database
   useEffect(() => {
+    getGameState().then((state) => {
+      console.log(state);
+      setBoard(JSON.parse(state.board_state));
+      setTurn(state.turn);
+
+      if (
+        state.player_1[0] != pb.authStore.model.id &&
+        state.player_2[0] != pb.authStore.model.id
+      ) {
+        window.location.href = `../`;
+      }
+    });
     pb.collection("games").subscribe(gameId, function (e) {
       setBoard(JSON.parse(e.record.board_state));
       setTurn(e.record.turn);

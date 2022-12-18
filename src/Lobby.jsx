@@ -12,8 +12,8 @@ export const Lobby = () => {
       board_state: JSON.stringify(create2d(3)),
       player_1: [pb.authStore.model.id],
     });
-    window.location.href = `game.html?gameId=${game.id}`;
     //go to gameboard after creating room
+    window.location.href = `game.html?gameId=${game.id}`;
   };
 
   //Join room btn
