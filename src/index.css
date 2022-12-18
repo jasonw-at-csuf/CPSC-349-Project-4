@@ -16,7 +16,7 @@
         @apply font-bold text-lg mb-2;
     }
     .btn{
-        @apply bg-white hover:bg-amber-900 text-amber-900 font-semibold hover:text-white mt-4 py-1 px-4 border border-amber-900 hover:border-transparent rounded;    
+        @apply bg-white hover:bg-amber-900 text-amber-900 font-semibold hover:text-white m-4 py-1 px-4 border border-amber-900 hover:border-transparent rounded;    
     }
     .form-input{
         @apply rounded p-2 outline outline-amber-900 outline-2;
