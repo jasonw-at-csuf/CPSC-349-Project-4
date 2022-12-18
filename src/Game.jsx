@@ -42,14 +42,8 @@ export function Game() {
     if (turn == "O" && gameState.player_2[0] != pb.authStore.model.id) return;
     if (!isFilled(board) && winner == null && !board[i][j]) {
       const newBoard = updateBoard(i, j, turn);
-      const win = checkWin(board);
-      setWinner(checkWin(board));
-      if (win) alert(`${win} is the winner`);
-      else if (isFilled(board)) alert("Tie");
-      else {
-        const newTurn = toggleTurn();
-        await uploadGameState(newBoard, newTurn);
-      }
+      const newTurn = toggleTurn();
+      await uploadGameState(newBoard, newTurn);
     }
   };
 
@@ -74,12 +68,21 @@ export function Game() {
     });
   };
 
+  // subscribe to realtime updates from the database
   useEffect(() => {
     pb.collection("games").subscribe("3h8eqcyy8hklsx1", function (e) {
       setBoard(JSON.parse(e.record.board_state));
       setTurn(e.record.turn);
     });
   }, []);
+
+  // check for win or tie every state change
+  useEffect(() => {
+    const win = checkWin(board);
+    setWinner(checkWin(board));
+    if (win) alert(`${win} is the winner`);
+    else if (isFilled(board)) alert("Tie");
+  }, [board]);
 
   return (
     <div className="flex justify-center items-center content-center h-screen bg-cyan-700">
