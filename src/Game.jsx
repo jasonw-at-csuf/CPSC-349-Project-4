@@ -18,7 +18,7 @@ console.log(pb.authStore.token);
 console.log(pb.authStore.model.id);
 console.log(pb.authStore.model);
 
-export function Game() {
+export function Game(gameId = "3h8eqcyy8hklsx1") {
   const [board, setBoard] = useState(create2d(3));
   const [turn, setTurn] = useState("X");
   const [winner, setWinner] = useState(null);
@@ -55,14 +55,14 @@ export function Game() {
   };
 
   const uploadGameState = async (board, turn) => {
-    await pb.collection("games").update("3h8eqcyy8hklsx1", {
+    await pb.collection("games").update(gameId, {
       turn: turn,
       board_state: JSON.stringify(board),
     });
   };
 
   const getGameState = async () => {
-    return await pb.collection("games").getOne("3h8eqcyy8hklsx1", {
+    return await pb.collection("games").getOne(gameId, {
       turn: turn,
       board_state: JSON.stringify(board),
     });
@@ -70,7 +70,7 @@ export function Game() {
 
   // subscribe to realtime updates from the database
   useEffect(() => {
-    pb.collection("games").subscribe("3h8eqcyy8hklsx1", function (e) {
+    pb.collection("games").subscribe(gameId, function (e) {
       setBoard(JSON.parse(e.record.board_state));
       setTurn(e.record.turn);
     });
