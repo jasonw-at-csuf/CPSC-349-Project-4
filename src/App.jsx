@@ -6,8 +6,6 @@ import { Lobby } from "./Lobby";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 
-// const USERNAME = 'email@email.com'
-// const PASSWORD = 'poggers123'
 
 const pb = new PocketBase("https://cpsc349project4.fly.dev");
 
