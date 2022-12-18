@@ -37,6 +37,9 @@ export function Game() {
   };
 
   const updateTile = async (i, j) => {
+    const gameState = await getGameState();
+    if (turn == "X" && gameState.player_1[0] != pb.authStore.model.id) return;
+    if (turn == "O" && gameState.player_2[0] != pb.authStore.model.id) return;
     if (!isFilled(board) && winner == null && !board[i][j]) {
       const newBoard = updateBoard(i, j, turn);
       const win = checkWin(board);
@@ -59,6 +62,13 @@ export function Game() {
 
   const uploadGameState = async (board, turn) => {
     await pb.collection("games").update("3h8eqcyy8hklsx1", {
+      turn: turn,
+      board_state: JSON.stringify(board),
+    });
+  };
+
+  const getGameState = async () => {
+    return await pb.collection("games").getOne("3h8eqcyy8hklsx1", {
       turn: turn,
       board_state: JSON.stringify(board),
     });
