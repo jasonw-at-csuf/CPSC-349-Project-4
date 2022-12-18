@@ -126,6 +126,9 @@ export function Game() {
           <p className="text-m font-bold outline rounded outline-amber-900 w-64 m-1">
             Current Player: <span id="currentPlayer">{turn}</span>
           </p>
+          <p className="text-m font-bold outline rounded outline-amber-900 w-64 m-1">
+            Join Code: <span id="gameId">{gameId}</span>
+          </p>
         </div>
 
         {/* <!-- 3*3 grid of Boxes --> */}
