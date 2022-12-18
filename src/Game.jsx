@@ -123,7 +123,7 @@ export function Game() {
         {/* <!-- Game Instructions --> */}
         <div className="flex flex-col items-center">
           <p className="text-m font-bold outline rounded outline-amber-900 w-64 m-1">
-            Authenticated as: {pb.authStore.model.name}
+            Authenticated as: {pb.authStore.model.email}
           </p>
           <p className="text-m font-bold outline rounded outline-amber-900 w-64 m-1">
             Tap a box to start the game

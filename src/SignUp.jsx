@@ -14,12 +14,17 @@ export const SignUp = (props) => {
     } else if (pass != confirmPass) {
       alert("Confirm password must match password");
     } else {
-      await pb.collection("users").create({
-        email: email,
-        password: pass,
-        passwordConfirm: confirmPass,
-      });
-      console.log("Account Created");
+      try {
+        await pb.collection("users").create({
+          email: email,
+          password: pass,
+          passwordConfirm: confirmPass,
+        });
+        alert("Account Created");
+        window.location.href = `/`;
+      } catch(e) {
+        alert(`Error occured while creating account: ${e}`)
+      }
     }
   };
 

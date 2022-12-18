@@ -47,7 +47,7 @@ export const Lobby = () => {
     <div className="bg-amber-100 outline outline-amber-900 outline-8 w-5/6 sm:w-2/5 p-5 flex flex-col justify-center items-center">
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <p className="text-m font-bold outline rounded outline-amber-900 w-64 my-5">
-          Authenticated as: {pb.authStore.model.name}
+          Authenticated as: {pb.authStore.model.email}
         </p>
         <button
           className="btn w-full m-0"
