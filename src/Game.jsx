@@ -8,17 +8,13 @@ import "./index.css";
 import { checkWin, create2d, index1d, isFilled } from "./util";
 
 const pb = new PocketBase("https://cpsc349project4.fly.dev");
+const id = new URLSearchParams(window.location.search).get("gameId") ?? "";
+// console.log(pb.authStore.isValid);
+// console.log(pb.authStore.token);
+// console.log(pb.authStore.model.id);
+// console.log(pb.authStore.model);
 
-const authData = await pb
-  .collection("users")
-  .authWithPassword("email@email.com", "poggers123");
-
-console.log(pb.authStore.isValid);
-console.log(pb.authStore.token);
-console.log(pb.authStore.model.id);
-console.log(pb.authStore.model);
-
-export function Game(gameId = "3h8eqcyy8hklsx1") {
+export function Game(gameId = id) {
   const [board, setBoard] = useState(create2d(3));
   const [turn, setTurn] = useState("X");
   const [winner, setWinner] = useState(null);

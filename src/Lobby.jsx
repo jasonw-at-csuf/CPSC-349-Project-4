@@ -8,10 +8,11 @@ export const Lobby = () => {
   const [roomId, setRoomId] = useState("");
 
   const createRoom = async (e) => {
-    await pb.collection("games").create({
+    const game = await pb.collection("games").create({
       board_state: JSON.stringify(create2d(3)),
       player_1: [pb.authStore.model.id],
     });
+    window.location.href = `game.html?${game.id}`;
     //go to gameboard after creating room
   };
 
@@ -20,8 +21,12 @@ export const Lobby = () => {
     e.preventDefault();
     try {
       //if this works go to gameboard
-      await pb.collection("games").getOne(roomId);
+      const game = await pb.collection("games").getOne(roomId);
       console.log("Join into room");
+      await pb.collection("games").update(game.id, {
+        player_2: [pb.authStore.model.id],
+      });
+      window.location.href = `game.html?${game.id}`;
     } catch (error) {
       alert("Sorry, no room exists");
       console.log("Caught the Error");
